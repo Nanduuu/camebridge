@@ -11,20 +11,26 @@ function getActiveUsers (staffType,db){
 	 				console.log(err);
 	 				reject('Issue with database');
 	 			}else{
-
-	 				con.end();
-	 				 resolve(resolve);
+					 console.log(result);
+					let list = '';
+	 				for(let i = 0; i <= result.length -1; i++){
+						if(i === 0){
+							list = result[i].Emailid;
+						}else{
+							list.concat(',' + result[i].Emailid)
+						}
+					 }
+					 console.log(list)
+	 				 resolve(list);
 	 			}
 	 		})
-
+ 
 	})
 
 	return myPromise;
 
 }
  
-
-
 module.exports.setRouter = (app)=>{
 	let baseUrl =`${appConfig.apiVersion}/addJob`;
 	app.post(baseUrl,verify.verifyAdminToken, function(req,res){
@@ -92,7 +98,7 @@ module.exports.setRouter = (app)=>{
 							}else{
 
 								getActiveUsers(req.body.Data.staff,req.db).then(function(result){
-
+									//console.log(result)
 									if(result){
 
 										var info = {
@@ -103,7 +109,7 @@ module.exports.setRouter = (app)=>{
 										}
 										let emailData = {
 											info,
-											toList : 'nandakumarvn01@gmail.com',
+											toList : result,
 										}
 										email.sendEmail(emailData);
 									}

@@ -4,7 +4,7 @@ const verify = require('../lib/verifyToken');
 module.exports.setRouter = (app)=>{
 	let baseUrl = `${appConfig.apiVersion}/getFactTableData/`;
 	
-	app.post(baseUrl, verify.verifyStaffToken ,function(req,res){
+	app.post(baseUrl ,function(req,res){
 
 	//console.log(req.path)
 

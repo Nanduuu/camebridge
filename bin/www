@@ -29,22 +29,22 @@ var server = http.createServer(app);
 
 server.listen(port , (port)=>{
   console.log(`Servet started at ${config.port} ....`)
-	let db = mongoose.connect(config.db.url,{useNewUrlParser:true});
+//	let db = mongoose.connect(config.db.url,{useNewUrlParser:true});
 });
 server.on('error', onError);
-server.on('listening', onListening);
+server.on('listening', onListening); 
 
-mongoose.connection.on('error',function(error){
-	console.log(error);
-})
+// mongoose.connection.on('error',function(error){
+// 	console.log(error);
+// })
 
-mongoose.connection.on('open',function(error){
-	if(error){
-		console.log('issue at database');
-	}else{
-		console.log('data base connection open successful');
-	}
-})
+// mongoose.connection.on('open',function(error){
+// 	if(error){
+// 		console.log('issue at database');
+// 	}else{
+// 		console.log('data base connection open successful');
+// 	}
+// })
 
 
 /**

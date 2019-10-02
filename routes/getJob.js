@@ -10,7 +10,7 @@ module.exports.setRouter = (app)=>{
 				req.db.query(sql,function(err,result){
 					console.log(sql)
 					if(err){
-						con.end();
+					//	con.end();
 						res.send({success:false,message:"Job ID does not exits"});
 					}else{
 //						console.log(result);
@@ -18,5 +18,5 @@ module.exports.setRouter = (app)=>{
 					}
 					
 		})
-	})
+	}) 
 }

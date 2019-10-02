@@ -8,6 +8,7 @@ appConfig.db={
 }
 appConfig.apiVersion = '/api';
 appConfig.jwtSecretCode = 'nandakumar';
+appConfig.serverIP = '';
 
 module.exports={
     port:appConfig.port,
@@ -16,4 +17,5 @@ module.exports={
     db : appConfig.db,
     apiVersion : appConfig.apiVersion,
     jwtSecretCode : appConfig.jwtSecretCode,
+    serverIP : appConfig.serverIP,
 } // end of module export

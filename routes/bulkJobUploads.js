@@ -32,7 +32,7 @@ function makeObj(data,init) {
 
 
 module.exports.setRouter = (app)=>{
-	let baseUrl = `${appConfig.baseUrl}/Bulkjobuploads/`
+	let baseUrl = `${appConfig.apiVersion}/Bulkjobuploads/`
 	app.post(baseUrl,urlencodedparser, verify.verifyAdminToken,function(req,res){
 
 		var response = [];

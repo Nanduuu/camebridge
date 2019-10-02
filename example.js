@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-
+const md5 = require('md5');
+console.log(md5('admin'))
 
 app.get('/split/name', (req, res) => {
     var par = req.query;

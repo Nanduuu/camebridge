@@ -44,7 +44,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('admin@admin.com','Admin','Cambridge Care Services','9945215941','21232f297a57a5a743894a0e4a801fc3','admin',2,'','2019-09-29 14:48:07','2038-01-18 18:30:00'),('nandakumarvn01@gmail.com','Nanda','Kumar','9945215941','912ec803b2ce49e4a541068d495ab570','staff',3,'Doctor','2019-09-29 20:17:11','2038-01-18 18:30:00'),('nanda@yahoo.com','nanda','kumar','9945215941','912ec803b2ce49e4a541068d495ab570','staff',4,'Doctor','2019-09-29 20:17:12','2038-01-18 18:30:00'),('nanda2@yahoo.com','Srinidhi','A','9945215941','912ec803b2ce49e4a541068d495ab570','staff',5,'Health Care assistant (HCA)','2019-09-30 02:41:49','2019-09-30 02:41:49'),('nandaqwe@yahoo.com','nanda','A','9945215941','912ec803b2ce49e4a541068d495ab570','staff',6,'Health Care assistant (HCA)','2019-09-30 03:05:03','2019-09-30 03:05:03');
+INSERT INTO `user` VALUES ('admin@gmail.com','Admin','Cambridge Care Services','9945215941','21232f297a57a5a743894a0e4a801fc3','admin',2,'','2019-09-30 12:56:29','2038-01-18 18:30:00'),('nandakumarvn01@gmail.com','Nanda','Kumar','9945215941','912ec803b2ce49e4a541068d495ab570','staff',3,'Doctor','2019-10-02 10:24:02','2038-01-18 18:30:00');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-30  7:36:50
+-- Dump completed on 2019-10-02 16:44:26

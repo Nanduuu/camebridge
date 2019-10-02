@@ -49,7 +49,7 @@ module.exports.setRouter = (app)=>{
 								  res.send({success:false, msg:"Issue with database"});
 							  }else{
 							//	  console.log(result);
-								  res.send({success:true,msg:"Client Added Successfully"});
+								  res.send({success:true,msg:"Shift Added Successfully"});
 									  
 							  }
 								  

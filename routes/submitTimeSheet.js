@@ -1,18 +1,20 @@
 const fs = require('fs');
-
+const formidable = require('express-formidable');
 const appConfig = require('../config/appConfig');
 const verify = require('../lib/verifyToken');
 
 module.exports.setRouter = (app)=>{
 	let baseUrl = `${appConfig.apiVersion}/submitTimeSheet/`;
 
-	app.post(baseUrl, verify.verifyStaffToken, function(req,res){
-//		console.log(req.fields); 
-//		console.log(req.files.ack)
+	app.post(baseUrl, formidable(),  verify.verifyStaffToken, function(req,res){
+		console.log(req.fields); 
+		console.log(req.files.ack)
 		var data = req.fields;
-		fs.rename(req.files.ack.path, __dirname+ '/acks/' + data.jobid + data.userid + req.files.ack.name, function(err){
+		fs.rename(req.files.ack.path,  `./acks/` + data.jobid + data.userid + req.files.ack.name, function(err){
 
 			if(err){
+				console.log(err)
+				res.send({success:false,msg:"File error"});
 			}else{
 				var input = {
 					remarks : data.remarks,
@@ -22,20 +24,20 @@ module.exports.setRouter = (app)=>{
 				var sql = `update facttable set  ? where jobid = ${data.jobid} and userid = ${data.userid};`
 
 				req.db.query(sql, input,function(err,result){
-                    !err ? req.db.query('commit',function(err,result){
-                        res.send({success:true,msg:"Submitted sucessfully"});
-                    }) : res.send( {seccess:false,msg:"filed to upload ack" });
-                })
-			}
 
-		})
+					if(err){
+						console.log(err)
+						res.send( {seccess:false,msg:"filed to upload ack" });
+					}else{
+						console.log(result);
+						req.db.query('commit',function(err,result){
+							res.send({success:true,msg:"Submitted sucessfully"});
+					})
+                  
+				}
+
+			})
 		
-	}
-
-	)
-
-}
-
-
-
-
+		} 
+	})
+	})};

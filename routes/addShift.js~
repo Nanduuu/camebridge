@@ -42,7 +42,7 @@ module.exports.setRouter = (app)=>{
 					  }else{
 						  console.log(result);
 							  data.ct_id = result[0].CT_ID;	
-							  console.log(data);
+							//  console.log(data);
 							  req.db.query(sql, data, function(err,results){
 							  if(err){ 
 								  console.log(err)

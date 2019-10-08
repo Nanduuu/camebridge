@@ -41,7 +41,7 @@ module.exports.setRouter = (app)=>{
 						  res.send({seuccess:false,msg:"Client does not Exits"})
 					  }else{
 						  console.log(result);
-							  data.ct_id = result[0].CT_ID;	
+							  data.ct_id = result[0].ct_id;	
 							  console.log(data);
 							  req.db.query(sql, data, function(err,results){
 							  if(err){ 

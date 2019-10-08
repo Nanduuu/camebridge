@@ -18,7 +18,7 @@ module.exports.setRouter = (app)=>{
 
 		  let sql_shiftid = 'SELECT MAX(shift_id) as MAX from shifts;';
 
-		  let sql_ct_id = 'SELECT CT_ID from CLIENT where ct_name ="' + req.body.Data.ct_name + '";';
+		  let sql_ct_id = 'SELECT ct_id from client where ct_name ="' + req.body.Data.ct_name + '";';
 		  
 		  var sql = 'INSERT INTO shifts SET ?';
 
@@ -37,18 +37,18 @@ module.exports.setRouter = (app)=>{
 				  debugger;
 				  req.db.query(sql_ct_id,function(err,result){
 					  if(err){
-						//  console.log(err);
+						  console.log(err);
 						  res.send({seuccess:false,msg:"Client does not Exits"})
 					  }else{
-						//  console.log(result);
+						  console.log(result);
 							  data.ct_id = result[0].CT_ID;	
-							//  console.log(data);
+							  console.log(data);
 							  req.db.query(sql, data, function(err,results){
 							  if(err){ 
-							//	  console.log(err)
+								  console.log(err)
 								  res.send({success:false, msg:"Issue with database"});
 							  }else{
-							//	  console.log(result);
+								  console.log(result);
 								  res.send({success:true,msg:"Shift Added Successfully"});
 									  
 							  }

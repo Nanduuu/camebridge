@@ -13,7 +13,7 @@ module.exports.setRouter = (app)=>{
   			var sql = "select Emailid, Fname, Lname,  Tel, Role, stafftype, userid ,end_date from user where Emailid = '" + req.body.Data.email + "' AND Pword = '" + encrypt + "';";							
 		  		 req.db.query(sql, function(error,result,fields){
 		  			if(error){
-		  					
+		  					console.log(error);
 		  					res.send({success:false, msg:"Issue at database"});
 		  			}else{
 

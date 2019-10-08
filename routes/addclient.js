@@ -17,9 +17,14 @@ module.exports.setRouter = (app)=>{
 						  }
 						  let sql_getid = 'SELECT MAX(ct_id) as MAX from client;';
 						  
-						  var sql = 'INSERT INTO CLIENT SET ?';
+						  var sql = 'INSERT INTO client SET ?';
 
 						  req.db.query(sql_getid, function(err,result){
+							  
+							  if(err){
+								  console.log(err);
+								  console.log(result);
+							  }
 
 							  if(result[0].MAX == null){
 								  data.ct_id = 1;

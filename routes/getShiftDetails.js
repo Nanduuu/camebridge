@@ -6,7 +6,7 @@ module.exports.setRouter = (app)=>{
 	let baseUrl = `${appConfig.apiVersion}/getShiftDetails/`;
 	app.post(baseUrl, verify.verifyAdminToken,function(req,res){
 		var clientId;
-		let sql_ct_id = 'SELECT ct_id from CLIENT where ct_name ="' + req.body.Data + '";';
+		let sql_ct_id = 'SELECT ct_id from client where ct_name ="' + req.body.Data + '";';
 		
 
 		req.db.query(sql_ct_id,function(err,result){

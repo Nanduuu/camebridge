@@ -18,6 +18,7 @@ module.exports.setRouter = (app)=>{
 				var sql = `select * from shifts where ct_id = ${clientId};`
 				req.db.query(sql,function(err,result){
 						if(err){
+							console.log(err);
 							res.send({success:false,msg:"Issue with database"})
 						}else{
 							console.log(result);

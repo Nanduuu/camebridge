@@ -12,12 +12,14 @@ module.exports.setRouter = (app)=>{
 		req.db.query(sql_ct_id,function(err,result){
 
 			if(err){
+				console.log(err);
 				res.send({success:false,msg:"Issue with database"});
 			}else{
 				clientId = result[0].ct_id;
 				var sql = `select * from shifts where ct_id = ${clientId};`
 				req.db.query(sql,function(err,result){
 						if(err){
+							console.log(err);
 							res.send({success:false,msg:"Issue with database"})
 						}else{
 							console.log(result);

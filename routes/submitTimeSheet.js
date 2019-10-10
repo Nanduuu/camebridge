@@ -11,7 +11,7 @@ module.exports.setRouter = (app)=>{
 		console.log(req.fields); 
 		console.log(req.files.ack)
 		var data = req.fields;
-		fs.rename(req.files.ack.path,  `${appRoot}/acks/` + data.jobid + data.userid + req.files.ack.name, function(err){
+		fs.rename(req.files.ack.path,  `../acks/` + data.jobid + data.userid + req.files.ack.name, function(err){
 
 			if(err){
 				console.log(err)
@@ -19,7 +19,7 @@ module.exports.setRouter = (app)=>{
 			}else{
 				var input = {
 					remarks : data.remarks,
-					ack_path: `${appRoot}/acks/` + data.jobid + data.userid + req.files.ack.name 
+					ack_path: `/acks/` + data.jobid + data.userid + req.files.ack.name 
 				}
 
 				var sql = `update facttable set  ? where jobid = ${data.jobid} and userid = ${data.userid};`

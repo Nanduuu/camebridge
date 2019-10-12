@@ -57,18 +57,18 @@ fs.readdirSync(routesPath).forEach(function(file){
 
 app.use('/acks/*',  (req,res) => {
     let baseUrl = req.baseUrl;
-	baseUrl.replace("%20"," ");
-    console.log(req)
-    console.log(path.join(__dirname,baseUrl))
-   res.sendFile(path.join(__dirname,baseUrl)) 
+    let	url = baseUrl.replace("%20"," ");
+    console.log(req);
+    console.log(path.join(__dirname,url));
+   res.sendFile(path.join(__dirname,url)) ;
   })
 
   app.use('/Payslips/*',  (req,res) => {
     let baseUrl = req.baseUrl;
-	baseUrl.replace("%20"," ");
-    console.log(req)
-    console.log(path.join(__dirname,baseUrl))
-   res.sendFile(path.join(__dirname,baseUrl)) 
+    let url = baseUrl.replace("%20"," ");
+    console.log(req);
+    console.log(path.join(__dirname,url));
+   res.sendFile(path.join(__dirname,url)) ;
   })
 
 app.use('/', function(req,res){

@@ -5,6 +5,7 @@ var formidable = require('formidable');
 const excelToJson = require('convert-excel-to-json');
 const appConfig = require('../config/appConfig');
 const verify = require('../lib/verifyToken');
+const email = require('../lib/email');
 
 function makeObj(data,init) {
 	var out= [];
@@ -30,6 +31,35 @@ function makeObj(data,init) {
 	}
 }
 
+function getActiveUsers (db){
+
+	let myPromise = new Promise(function(resolve, reject){
+  		
+	 		db.query(`select Emailid from user where end_date > "${new Date().toISOString()}";`, function(err,result){
+	 			if(err){
+	 				console.log(err);
+	 				reject('Issue with database');
+	 			}else{
+					 console.log(result);
+					 console.log(result.length);
+					let list = '';
+	 				for(let i = 0; i <= result.length -1; i++){
+						if(i == 0){
+							list = result[i].Emailid;
+						}else{
+						  list = list.concat(', ' , result[i].Emailid)
+						}
+					 }
+					 console.log(list)
+	 				 resolve(list);
+	 			}
+	 		})
+			 console.log('inside promise');
+	})
+	console.log('outside promise')
+	return myPromise;
+
+}
 
 module.exports.setRouter = (app)=>{
 	let baseUrl = `${appConfig.apiVersion}/Bulkjobuploads/`
@@ -54,10 +84,38 @@ module.exports.setRouter = (app)=>{
 						 res.send({success:false,msg:"issue with database"});
 					 }else{
 						 //console.log(objfile.Sheet1)
-						  var	rowData = makeObj(objfile.Sheet1, result[0].max); 
+						  let rowData = makeObj(objfile.Sheet1, result[0].max); 
 	//					  console.log(result[0].max);
-						 for (var i = 0 ;i< rowData.length; i++){
-						 var data = rowData[i];
+
+
+							getActiveUsers(req.db).then(function(result){
+								console.log('in then')
+								if(result){
+									let info = [];
+									for(let i = 0; i <= rowData.length -1; i++){
+
+										infoset = {
+												hospital : rowData[i].Client,
+												 date : rowData[i].date,
+												 from_time : rowData[i].start_time,
+												to_time  : rowData[i].end_time,
+											}
+											info.push(infoset)
+									}
+
+									
+									let emailData = {
+										info,
+										toList : result,
+									}
+									email.sendEmail(emailData);
+								}
+							}).catch(function(err){
+								console.log(err);
+							})
+
+						 for (let i = 0 ;i< rowData.length; i++){
+						 let data = rowData[i];
 
 						 var sql_insert = 'INSERT INTO jobs SET ?';
 								 req.db.query(sql_insert,data,function(err,result){
@@ -77,13 +135,15 @@ module.exports.setRouter = (app)=>{
 									}
 								})
 							}
+							console.log(response.length === 0);
+							if(response.length === 0){
+											res.send({success:true,msg:"All the jobs posted successfully"});
+										}else{
+											res.send({success:true,data:response,msg:'Partially jobs posted'});
+							}
 						 }
 					 })
 			   })
-				if(response.length === 0){
-								 res.send({success:true,msg:"All the jobs posted successfully"});
-							 }else{
-								 res.send({success:true,data:response,msg:'Partially jobs posted'});
-				}
+			   
 		})
 }; 

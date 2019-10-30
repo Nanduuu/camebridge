@@ -2,6 +2,9 @@
 const appConfig = require('../config/appConfig');
 const verify = require('../lib/verifyToken');
 
+const emailTrasporter = require('../lib/emailTransporter');
+
+var transporter =  emailTrasporter.emailTransporter;
 
 module.exports.setRouter = (app)=>{
 	let baseUrl = `${appConfig.apiVersion}/enableDisableUser`;
@@ -31,8 +34,39 @@ module.exports.setRouter = (app)=>{
 				console.log(err)
 				res.send({success:false,msg:"Issue with database"});
 			}else{
-	//						console.log(result);
-							res.send({success:true,msg:"Successfully updated"});
+							console.log(result);
+							req.db.query(`select * from user where Userid = ${req.body.Data.Userid};`, function(err,result){
+								if(err){
+									res.send({success:false,msg:"Issue with database"})
+								}else{
+
+									if (current_date < end_date){
+										var html = `<h3> Hi ${result[0].Fname} </h3><p> Your id is enabled to login.</p><a href="http://3.8.149.133/">Click here to login </a>`;
+									}else{
+										var html = `<h3> Hi ${result[0].Fname} </h3><p> Your id is disabled to login.</p><p>Please contact Cambridgecre services </p>`;
+									}
+									var mailOptions = {
+										from: 'cambridgecareservices@yahoo.com',
+										to: result[0].Emailid,
+										subject: 'Notification from Cambridge Care Services',
+										html,
+									}; 
+
+									console.log(mailOptions);
+
+									transporter.sendMail(mailOptions, function(error, info){
+										if (error) {
+											  console.log(error);
+										} else {
+											  console.log('Email sent: ' + info.response);
+					  
+									  }
+									});
+
+									res.send({success:true,msg:"Successfully updated"})
+								}
+							})
+							
 						}
 				})
 			}

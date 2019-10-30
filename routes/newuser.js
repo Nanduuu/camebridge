@@ -10,17 +10,15 @@ var transporter = nodemailer.createTransport({
   
     auth: {
     user: 'cambridgecareservices@yahoo.com',
-    pass: 'Password@yahoo.com',
+    pass: 'Password@yahoo.com', 
   }
 });
 
 var mailOptions = {
 	from: 'cambridgecareservices@yahoo.com',
-	to: 'venkatesh.ranganath@cambridgecasreservice.co.uk,nandakumarvn01@gmail.com',
+	to: `nandakumarvn01@gmail.com, venkatesh.ranganath@cambridgecasreservice.co.uk, harishram3@gmail.com`,
 	subject: 'New account has been created - Plz enable user',
-	html : '<a href="http://13.126.202.170/">Click here to enable user </a>',
-				
-
+	html : '<a href="http://3.8.149.133/">Click here to enable user </a>',
 }; 
 
 var md5 = require('md5');

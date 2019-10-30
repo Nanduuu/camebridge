@@ -12,21 +12,22 @@ function getActiveUsers (staffType,db){
 	 				reject('Issue with database');
 	 			}else{
 					 console.log(result);
+					 console.log(result.length);
 					let list = '';
 	 				for(let i = 0; i <= result.length -1; i++){
-						if(i === 0){
+						if(i == 0){
 							list = result[i].Emailid;
 						}else{
-							list.concat(',' + result[i].Emailid)
+						  list = list.concat(', ' , result[i].Emailid)
 						}
 					 }
 					 console.log(list)
 	 				 resolve(list);
 	 			}
 	 		})
- 
+			 console.log('inside promise');
 	})
-
+	console.log('outside promise')
 	return myPromise;
 
 }
@@ -98,7 +99,7 @@ module.exports.setRouter = (app)=>{
 							}else{
 
 								getActiveUsers(req.body.Data.staff,req.db).then(function(result){
-									//console.log(result)
+									console.log('in then')
 									if(result){
 
 										var info = {
@@ -116,7 +117,10 @@ module.exports.setRouter = (app)=>{
 								}).catch(function(err){
 									console.log(err);
 								})
+							console.log('after promise call');
+							
 							res.send({success:true,msg:"Job added Successfully"});
+							console.log(req.body.Data);
 						}
 					})
 				});

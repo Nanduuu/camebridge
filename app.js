@@ -56,19 +56,21 @@ fs.readdirSync(routesPath).forEach(function(file){
 })
 
 app.use('/acks/*',  (req,res) => {
-    let baseUrl = req.baseUrl;
-    let	url = baseUrl.replace("%20"," ");
-    console.log(req);
-    console.log(path.join(__dirname,url));
-   res.sendFile(path.join(__dirname,url)) ;
+    console.log(req)
+    console.log(path.join(__dirname,req.baseUrl))
+   res.sendFile(path.join(__dirname,req.baseUrl)) 
   })
 
   app.use('/Payslips/*',  (req,res) => {
-    let baseUrl = req.baseUrl;
-    let url = baseUrl.replace("%20"," ");
-    console.log(req);
-    console.log(path.join(__dirname,url));
-   res.sendFile(path.join(__dirname,url)) ;
+    console.log(req)
+    console.log(path.join(__dirname,req.baseUrl))
+   res.sendFile(path.join(__dirname,req.baseUrl)) 
+  })
+
+  app.use('/forms/*',  (req,res) => {
+    console.log(req)
+    console.log(path.join(__dirname,req.baseUrl))
+   res.sendFile(path.join(__dirname,req.baseUrl)) 
   })
 
 app.use('/', function(req,res){

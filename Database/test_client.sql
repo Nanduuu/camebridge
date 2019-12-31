@@ -31,6 +31,8 @@ CREATE TABLE `client` (
   `ct_start_date` date NOT NULL,
   `ct_end_date` date NOT NULL,
   `ct_pincode` varchar(45) NOT NULL,
+  `ct_invoice_prefix` varchar(45) NOT NULL,
+  `ct_invoice_number` varchar(6) NOT NULL,
   PRIMARY KEY (`ct_id`),
   UNIQUE KEY `ct_name_UNIQUE` (`ct_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -42,6 +44,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES ('voyage care',1,'70-71','Fen road','Cambridgr','2019-10-08','9999-12-31','cb22 3gn','VACSDA',''),('Nanda Kumar',2,'Btm','Main Road','Bangalore','2019-12-27','2019-12-27','560029','NARAYA','00000');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-02 16:44:26
+-- Dump completed on 2019-12-31 10:53:58

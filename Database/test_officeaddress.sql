@@ -31,7 +31,10 @@ CREATE TABLE `officeaddress` (
   `VAT_Reg_No` varchar(45) NOT NULL,
   `Payment_Terms` varchar(255) NOT NULL,
   `Terms` varchar(45) NOT NULL,
-  `Website` varchar(45) NOT NULL
+  `Website` varchar(45) NOT NULL,
+  `Bank_Name` varchar(45) NOT NULL,
+  `Account_Number` varchar(45) NOT NULL,
+  `Sort_Code` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +44,7 @@ CREATE TABLE `officeaddress` (
 
 LOCK TABLES `officeaddress` WRITE;
 /*!40000 ALTER TABLE `officeaddress` DISABLE KEYS */;
-INSERT INTO `officeaddress` VALUES ('49, Edinburgh Avenue','Sawston, CB22 3DW','Tel : 9945215941','accounts@cambridgecareservices.co.uk','Company Reg. No. 09665143','VAT Reg No: GB 297 8055 50','We request you to pay Total Balance Due amount within 30 days from the issue date of this invoice.','TERMS: 30 DAYS','www.cambridgecareservices.co.uk');
+INSERT INTO `officeaddress` VALUES ('49, Edinburgh Avenue','Sawston, CB22 3DW','Tel : 9945215941','accounts@cambridgecareservices.co.uk','Company Reg. No. 09665143','VAT Reg No: GB 297 8055 50','We request you to pay Total Balance Due amount within 30 days from the issue date of this invoice.','TERMS: 30 DAYS','www.cambridgecareservices.co.uk','State Bank of India','22565565569','2562');
 /*!40000 ALTER TABLE `officeaddress` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-02 16:44:26
+-- Dump completed on 2019-12-31 10:53:59

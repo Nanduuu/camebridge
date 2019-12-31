@@ -12,6 +12,7 @@ module.exports.setRouter = (app)=>{
 			ct_street_name : req.body.Data.ct_street_name,
 			ct_city_name : req.body.Data.ct_city_name,
 			ct_pincode : req.body.Data.ct_pincode,
+			ct_invoice_prefix : req.body.Data.ct_invoice_prefix,
 		}
 		var sql = 'update client SET ? where ct_id = "'+ req.body.Data.ct_id +'";';
 		req.db.query(sql,input,function(err,result){

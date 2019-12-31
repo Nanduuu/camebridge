@@ -45,6 +45,7 @@ CREATE TABLE `jobs` (
 
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+INSERT INTO `jobs` VALUES (1,'Nurse','voyage care','2019-11-30 09:05:24',1,5,0,'Y','2019-11-30 07:00:00','2019-11-30 14:00:00','Early'),(2,'Doctor','voyage care','2019-12-24 08:35:23',1,5,1,'Y','2019-12-24 07:00:00','2019-12-24 14:00:00','Early'),(3,'Doctor','voyage care','2019-12-30 10:44:48',1,2,1,'Y','2019-12-30 07:00:00','2019-12-30 14:00:00','Early'),(4,'Doctor','voyage care','2019-12-30 13:50:18',1,2,0,'Y','2019-12-30 07:00:00','2019-12-30 14:00:00','Early'),(5,'Doctor','voyage care','2019-12-27 13:57:29',1,3,0,'Y','2019-12-27 07:00:00','2019-12-27 14:00:00','Early'),(6,'Doctor','voyage care','2019-12-27 14:04:50',1,3,0,'Y','2019-12-27 07:00:00','2019-12-27 14:00:00','Early'),(7,'Doctor','voyage care','2019-12-28 14:06:00',1,4,0,'Y','2019-12-28 07:00:00','2019-12-28 14:00:00','Early');
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-02 16:44:26
+-- Dump completed on 2019-12-31 10:53:57

@@ -12,8 +12,10 @@ module.exports.setRouter = (app)=>{
 							  'ct_street_name' : req.body.Data.ct_street_name,
 							  'ct_city_name':req.body.Data.ct_city_name,
 							  'ct_pincode' : req.body.Data.ct_pin,
+							  'ct_invoice_prefix' : req.body.Data.ct_invoice_prefix,
 							  'ct_start_date': new Date(),
-							  'ct_end_date':"9999-12-31"
+							  'ct_end_date':"9999-12-31",
+							  'ct_invoice_number': '00000',
 						  }
 						  let sql_getid = 'SELECT MAX(ct_id) as MAX from client;';
 						  

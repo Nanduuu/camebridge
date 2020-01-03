@@ -3,6 +3,12 @@ const pdf = require('../lib/genereatePDF');
 const appConfig = require('../config/appConfig');
 const verify = require('../lib/verifyToken');
 
+function pad(num, size) {
+        var s = num+"";
+        while (s.length < size) s = "0" + s;
+        return s;
+    }
+
 module.exports.setRouter = (app)=>{
 	let baseUrl = `${appConfig.apiVersion}/processinvoice/`;
 	app.post (baseUrl, verify.verifyAdminToken, function(req,res){
@@ -78,17 +84,26 @@ module.exports.setRouter = (app)=>{
 					   tableData.push ( ['','','','','','Toatl','',total] )
 					   tableData.push ( ['','','','','','Balance Due','',total] )
 
-					console.log(tableData);
+					//console.log(tableData);
 
 				}
 
 				pdf.generatePDF(res ,tableData, fileName , clientDetails,officeaddress).then(function(result){
 					//console.log(res)
+					let new_client = {
+						ct_invoice_number : pad(parseInt(clientDetails.ct_invoice_number) + 1, 6),
+					}
+					console.log(new_client);
+					req.db.query('update client SET ? where ct_id = "'+ clientDetails.ct_id +'";' , new_client, function(err,result){
+						if(err){
+							console.log(err);
+						}
+					});
 					res.send({success:true, url: fileName})
-						}).catch(function(err){
+				}).catch(function(err){
 					console.log(err)
 					res.send({success:false, url: ""})
-		})
+				})
 
 
 	})
